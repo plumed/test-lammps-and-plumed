@@ -1,0 +1,49 @@
+PLUMED: PLUMED is starting
+PLUMED: Version: 2.4.2 (git: Unknown) compiled on Jul 11 2018 at 19:09:03
+PLUMED: Please cite this paper when using PLUMED [1]
+PLUMED: For further information see the PLUMED web page at http://www.plumed.org
+PLUMED: Root: /Users/gareth/MD_code/lammps-permanent/lammps/lib/plumed/plumed2-2.4.2/
+PLUMED: For installed feature, see /Users/gareth/MD_code/lammps-permanent/lammps/lib/plumed/plumed2-2.4.2//src/config/config.txt
+PLUMED: Molecular dynamics engine: LAMMPS
+PLUMED: Precision of reals: 8
+PLUMED: Running over 1 node
+PLUMED: Number of threads: 1
+PLUMED: Cache line size: 512
+PLUMED: Number of atoms: 2004
+PLUMED: File suffix: 
+PLUMED: FILE: plumed-engforce.dat
+PLUMED: Action ENERGY
+PLUMED:   with label e
+PLUMED:   Bibliography [2][3]
+PLUMED: Action RESTRAINT
+PLUMED:   with label @1
+PLUMED:   with arguments e
+PLUMED:   added component to this action:  @1.bias 
+PLUMED:   at 0.000000
+PLUMED:   with harmonic force constant 0.000000
+PLUMED:   and linear force constant 0.100000
+PLUMED:   added component to this action:  @1.force2 
+PLUMED: Action PRINT
+PLUMED:   with label @2
+PLUMED:   with stride 1
+PLUMED:   with arguments e
+PLUMED:   on file engforced
+PLUMED:   with format  %8.4f
+PLUMED: END FILE: plumed-engforce.dat
+PLUMED: Timestep: 0.001818
+PLUMED: KbT has not been set by the MD engine
+PLUMED: It should be set by hand where needed
+PLUMED: Relevant bibliography:
+PLUMED:   [1] Tribello, Bonomi, Branduardi, Camilloni, and Bussi, Comput. Phys. Commun. 185, 604 (2014)
+PLUMED:   [2] Bartels and Karplus, J. Phys. Chem. B 102, 865 (1998)
+PLUMED:   [3] Bonomi and Parrinello, J. Comp. Chem. 30, 1615 (2009)
+PLUMED: Please read and cite where appropriate!
+PLUMED: Finished setup
+PLUMED:                                               Cycles        Total      Average      Minumum      Maximum
+PLUMED:                                                    1     0.010929     0.010929     0.010929     0.010929
+PLUMED: 1 Prepare dependencies                           102     0.000337     0.000003     0.000001     0.000012
+PLUMED: 2 Sharing data                                   102     0.001348     0.000013     0.000004     0.000762
+PLUMED: 3 Waiting for data                               102     0.000273     0.000003     0.000000     0.000082
+PLUMED: 4 Calculating (forward loop)                     102     0.002089     0.000020     0.000015     0.000084
+PLUMED: 5 Applying (backward loop)                       102     0.002153     0.000021     0.000015     0.000189
+PLUMED: 6 Update                                         102     0.001377     0.000014     0.000008     0.000077
