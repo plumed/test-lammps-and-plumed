@@ -1,0 +1,5 @@
+e: ENERGY
+# slope is such that 
+PRINT ARG=e FILE=energy2 FMT=%8.4f
+# slope should be alpha=1.1
+RESTRAINT AT=0.0 ARG=e SLOPE=0.21
