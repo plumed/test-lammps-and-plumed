@@ -2,7 +2,7 @@
 
 #!/bin/bash
 
-LAMMPS=/Users/gareth/MD_code/lammps-permanent/lammps/src/lmp_mpi
+LAMMPS=$HOME/opt/bin/lammps
 
 # Run first LAMMPS calculation
 $LAMMPS < in.peptide-plumed
