@@ -38,20 +38,21 @@ else
   echo "installing latest stable lammps $version"
 fi
 
-if [ -n "$patch" ] ; then
-  echo "patching using plumed patch $patch"
-else
-  patch="$(plumed patch -l | grep lammps)"
-  echo "patching using plumed patch $patch"
-fi
+# if [ -n "$patch" ] ; then
+#   echo "patching using plumed patch $patch"
+# else
+#   patch="$(plumed patch -l | grep lammps)"
+#   echo "patching using plumed patch $patch"
+# fi
 
 git checkout $version
 
-if [ "$patch" != no ] ; then
-  plumed patch -p -e $patch
-fi
+# if [ "$patch" != no ] ; then
+#   plumed patch -p -e $patch
+# fi
 
 cd src
+make lib-plumed args="-p $HOME"
 make yes-kspace
 make yes-molecule
 make yes-rigid
