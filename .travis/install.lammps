@@ -39,7 +39,7 @@ fi
 git checkout $version
 
 cd src
-make lib-plumed args="-p $HOME"
+make lib-plumed args="-p $HOME/opt"
 make yes-kspace
 make yes-molecule
 make yes-rigid
