@@ -18,7 +18,7 @@ install:
 # patch=no to skip patching
 # repo=https://github.com/gtribello/lammps.git to clone a given repository (rather than official lammps)
 # version=pablo-fix to checkout a specific version
-  - .travis/install.lammps patch=lammps-6Apr13
+  - .travis/install.lammps version=master
   - ccache -s
 
 script:

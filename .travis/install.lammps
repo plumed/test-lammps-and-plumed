@@ -3,14 +3,12 @@
 
 version=""
 repo=""
-patch=""
 
 for opt
 do
 case "$opt" in
   (repo=*) repo="${opt#repo=}" ;;
   (version=*) version="${opt#version=}" ;;
-  (patch=*) patch="${opt#patch=}" ;;
   (*) echo "unknown option $opt" ; exit 1 ;;
 esac
 
@@ -38,18 +36,7 @@ else
   echo "installing latest stable lammps $version"
 fi
 
-# if [ -n "$patch" ] ; then
-#   echo "patching using plumed patch $patch"
-# else
-#   patch="$(plumed patch -l | grep lammps)"
-#   echo "patching using plumed patch $patch"
-# fi
-
 git checkout $version
-
-# if [ "$patch" != no ] ; then
-#   plumed patch -p -e $patch
-# fi
 
 cd src
 make lib-plumed args="-p $HOME"
