@@ -55,6 +55,7 @@ cd src
 make yes-kspace
 make yes-molecule
 make yes-rigid
+make yes-manybody
 make yes-user-plumed
 make -j 5 ubuntu_simple
 cp ./lmp_ubuntu_simple $HOME/opt/bin/lammps
