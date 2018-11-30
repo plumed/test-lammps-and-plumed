@@ -1,0 +1,28 @@
+echo both
+
+variable 	alpha equal 1.1
+variable        temperature equal 500.*${alpha}*${alpha}
+variable        tempDamp equal 0.1/${alpha}
+include 	../in.seed
+units		metal
+atom_style	full
+read_data       ../data.equil
+variable        mass equal 22.98977
+mass            1 ${mass}
+
+variable        ts equal 0.002/${alpha}
+timestep        ${ts}
+include 	../in.setup
+
+# NPT
+
+fix             1 all plumed plumedfile plumed.dat outfile plumed.out
+fix 		2 all nve 
+fix		3 all temp/rescale 1 ${temperature} ${temperature} 0.0 1.0
+
+velocity 	all create ${temperature} ${seed} dist gaussian
+
+run             500
+
+write_data	data.final
+

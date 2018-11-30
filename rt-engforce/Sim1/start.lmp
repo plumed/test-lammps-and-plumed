@@ -1,0 +1,27 @@
+echo both
+
+variable        temperature equal 500.
+variable        tempDamp equal 0.1 # approx 0.1 ps
+include 	../in.seed
+units		metal
+atom_style	full
+read_data       ../data.equil
+variable        mass equal 22.98977
+mass            1 ${mass}
+
+timestep        0.002 # According to Frenkel and Smit is 0.001
+
+include         ../in.setup
+
+# NPT
+
+fix             1 all plumed plumedfile plumed.dat outfile plumed.out
+fix 		2 all nve 
+fix		3 all temp/rescale 1 ${temperature} ${temperature} 0.0 1.0
+
+velocity 	all create ${temperature} ${seed} dist gaussian
+
+run             500
+
+write_data	data.final
+

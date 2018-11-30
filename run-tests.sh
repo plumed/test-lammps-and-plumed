@@ -21,3 +21,9 @@ grep ERROR log
 rm log
 cd ../
 
+# Run tests on restraint on energy
+cd rt-engforce
+./check-plumed.sh > log
+grep ERROR log
+rm log
+cd ../
