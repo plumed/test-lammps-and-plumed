@@ -6,7 +6,7 @@ cd rt-1
 nlines=`grep ERROR log | wc -l`
 if [ "$nlines" -gt 0 ] ; then 
      echo ERROR in rt-1 
-     grep ERROR log
+     cat log
      exit 1
 fi
 rm log
@@ -18,7 +18,7 @@ cd rt-restraint
 nlines=`grep ERROR log | wc -l`
 if [ "$nlines" -gt 0 ] ; then 
      echo ERROR in rt-restraint 
-     grep ERROR log
+     cat log
      exit 1
 fi
 rm log
@@ -30,7 +30,7 @@ cd rt-virial
 nlines=`grep ERROR log | wc -l`
 if [ "$nlines" -gt 0 ] ; then
      echo ERROR in rt-virial
-     grep ERROR log
+     cat log
      exit 1
 fi
 rm log
@@ -42,7 +42,7 @@ cd rt-engforce
 nlines=`grep ERROR log | wc -l`
 if [ "$nlines" -gt 0 ] ; then
      echo ERROR in rt-engforce
-     grep ERROR log
+     cat log
      exit 1
 fi
 rm log
@@ -54,7 +54,7 @@ cd rt-engforce-npt
 nlines=`grep ERROR log | wc -l`
 if [ "$nlines" -gt 0 ] ; then
      echo ERROR in rt-engforce-npt
-     grep ERROR log
+     cat log
      exit 1
 fi
 rm log
