@@ -1,9 +1,18 @@
-dist: trusty
-sudo: required 
-
 language: cpp
 cache: ccache
-  
+matrix: 
+  include:
+# This is with make, shared linking and a preinstalled version of PLUMED
+  - os: linux
+    dist: trusty
+    sudo: required 
+    env: DOWNLOAD_PLUMED=no PLUMED_VERSION=master
+# This is with make, static linking and LAMMPS downloads the master version of PLUMED
+  - os: linux
+    dist: trusty
+    sudo: required
+    env: DOWNLOAD_PLUMED=yes 
+
 install:
   - sudo apt update
   - sudo apt install mpi-default-bin mpi-default-dev
@@ -13,12 +22,12 @@ install:
   - export PATH=/usr/lib/ccache:${PATH}
   - ccache -s
 # version=master or version=f123f12f3 to select a specific version
-  - CXX="mpic++" .travis/install.plumed
+  - if test "$DOWNLOAD_PLUMED" == no ; then CXX="mpic++" .travis/install.plumed version=$PLUMED_VERSION; fi
 # patch=lammps-6Apr13 to select a patch
 # patch=no to skip patching
 # repo=https://github.com/gtribello/lammps.git to clone a given repository (rather than official lammps)
 # version=pablo-fix to checkout a specific version
-  - .travis/install.lammps version=master
+  - .travis/install.lammps version=master downloadplumed=$DOWNLOAD_PLUMED
   - ccache -s
 
 script:

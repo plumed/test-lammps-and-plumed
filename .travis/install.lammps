@@ -3,12 +3,14 @@
 
 version=""
 repo=""
+download=""
 
 for opt
 do
 case "$opt" in
   (repo=*) repo="${opt#repo=}" ;;
   (version=*) version="${opt#version=}" ;;
+  (downloadplumed=*) download="${opt#downloadplumed=}" ;;
   (*) echo "unknown option $opt" ; exit 1 ;;
 esac
 
@@ -39,7 +41,11 @@ fi
 git checkout $version
 
 cd src
-make lib-plumed args="-p $HOME/opt"
+if check "$download" == yes ; then
+   make lib-plumed args="-b"
+else    
+   make lib-plumed args="-p $HOME/opt -m shared"
+fi
 make yes-kspace
 make yes-molecule
 make yes-rigid
