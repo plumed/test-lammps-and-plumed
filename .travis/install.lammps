@@ -42,6 +42,8 @@ git checkout $version
 
 cd src
 if [ $download = yes ]; then
+   mkdir $HOME/opt/
+   mkdir $HOME/opt/bin
    make lib-plumed args="-b"
 else    
    make lib-plumed args="-p $HOME/opt -m shared"
