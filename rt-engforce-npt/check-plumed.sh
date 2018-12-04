@@ -15,7 +15,7 @@ cd Sim2
 $LAMMPS < start.lmp
 cd ../
 
-nlines=`paste Sim1/energy1 Sim2/energy2 | tail -n +2 | awk '{if( $2<$4-0.001 || $2>04+0.001 ) print $0}' | wc -l`
+nlines=`paste Sim1/energy1 Sim2/energy2 | tail -n +2 | awk '{if( $2<$4-0.01 || $2>04+0.01 ) print $0}' | wc -l`
 if [ "$nlines" -gt 0 ] ; then
    echo ERROR mismatched energies for restrained NPT simuations
    paste Sim1/energy1 Sim2/energy2 | awk '{if( $2<$4-0.001 || $2>04+0.001 ) print $0}'
