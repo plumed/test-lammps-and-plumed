@@ -41,7 +41,7 @@ fi
 git checkout $version
 
 cd src
-if check "$download" == yes ; then
+if [ $download = yes ]; then
    make lib-plumed args="-b"
 else    
    make lib-plumed args="-p $HOME/opt -m shared"
