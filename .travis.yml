@@ -6,16 +6,22 @@ matrix:
   - os: linux
     dist: trusty
     sudo: required 
-    env: DOWNLOAD_PLUMED=no PLUMED_VERSION=master
+    env: CMAKE_LAMMPS=no DOWNLOAD_PLUMED=no PLUMED_VERSION=master
 # This is with make, static linking and LAMMPS downloads the master version of PLUMED
   - os: linux
     dist: trusty
     sudo: required
-    env: DOWNLOAD_PLUMED=yes 
+    env: CMAKE_LAMMPS=no DOWNLOAD_PLUMED=yes 
+# This is with cmake, runtime linking and LAMMPS downloads PLUMED
+  - os: linux
+    dist: trusty
+    sudo: required
+    env: CMAKE_LAMMPS=yes DOWNLOAD_PLUMED=yes
 
 install:
   - sudo apt update
   - sudo apt install mpi-default-bin mpi-default-dev
+  - sudo apt-get -y install libatlas-base-dev
   - export PATH="$HOME/opt/bin:$PATH"
   - export LD_LIBRARY_PATH="$HOME/opt/lib:$LD_LIBRARY_PATH"
   - sudo ln -s ccache /usr/local/bin/mpic++
@@ -27,7 +33,7 @@ install:
 # patch=no to skip patching
 # repo=https://github.com/gtribello/lammps.git to clone a given repository (rather than official lammps)
 # version=pablo-fix to checkout a specific version
-  - .travis/install.lammps version=master downloadplumed=$DOWNLOAD_PLUMED
+  - .travis/install.lammps version=master downloadplumed=$DOWNLOAD_PLUMED cmake=$CMAKE_LAMMPS
   - ccache -s
 
 script:

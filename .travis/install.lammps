@@ -4,6 +4,7 @@
 version=""
 repo=""
 download=""
+cmake=""
 
 for opt
 do
@@ -11,6 +12,7 @@ case "$opt" in
   (repo=*) repo="${opt#repo=}" ;;
   (version=*) version="${opt#version=}" ;;
   (downloadplumed=*) download="${opt#downloadplumed=}" ;;
+  (cmake=*) cmake="${opt#cmake=}" ;;
   (*) echo "unknown option $opt" ; exit 1 ;;
 esac
 
@@ -40,19 +42,31 @@ fi
 
 git checkout $version
 
-cd src
-if [ $download = yes ]; then
-   mkdir $HOME/opt/
-   mkdir $HOME/opt/bin
-   make lib-plumed args="-b"
-else    
-   make lib-plumed args="-p $HOME/opt -m shared"
+if [ $cmake = yes ]; then
+   mkdir build
+   cd build 
+   if [ $download = yes ]; then
+       cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes -D DOWNLOAD_PLUMED=yes -D PLUMED_MODE=runtime ../cmake
+   else 
+       cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes ../cmake 
+   fi
+   make -j 5 
+   cp ./lmp $HOME/opt/bin/lammps
+else 
+   cd src
+   if [ $download = yes ]; then
+      mkdir $HOME/opt/
+      mkdir $HOME/opt/bin
+      make lib-plumed args="-b"
+   else    
+      make lib-plumed args="-p $HOME/opt -m shared"
+   fi
+   make yes-kspace
+   make yes-molecule
+   make yes-rigid
+   make yes-manybody
+   make yes-user-plumed
+   make -j 5 ubuntu_simple
+   cp ./lmp_ubuntu_simple $HOME/opt/bin/lammps
 fi
-make yes-kspace
-make yes-molecule
-make yes-rigid
-make yes-manybody
-make yes-user-plumed
-make -j 5 ubuntu_simple
-cp ./lmp_ubuntu_simple $HOME/opt/bin/lammps
 
