@@ -50,7 +50,7 @@ if [ $cmake = yes ]; then
        mkdir $HOME/opt/bin 
        cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes -D DOWNLOAD_PLUMED=yes -D PLUMED_MODE=runtime ../cmake
    else
-       export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/opt/include
+       export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/opt/lib/pkgconfig
        cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes ../cmake 
    fi
    make -j 5 

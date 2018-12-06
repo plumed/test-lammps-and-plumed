@@ -6,22 +6,22 @@ matrix:
   - os: linux
     dist: trusty
     sudo: required 
-    env: CMAKE_LAMMPS=no DOWNLOAD_PLUMED=no PLUMED_VERSION=master
+    env: CMAKE_LAMMPS=no DOWNLOAD_PLUMED=no PLUMED_MODE=shared PLUMED_VERSION=master
 # This is with make, static linking and LAMMPS downloads the master version of PLUMED
   - os: linux
     dist: trusty
     sudo: required
-    env: CMAKE_LAMMPS=no DOWNLOAD_PLUMED=yes 
+    env: CMAKE_LAMMPS=no DOWNLOAD_PLUMED=yes PLUMED_MODE=static
 # This is with cmake, runtime linking and LAMMPS downloads PLUMED
   - os: linux
     dist: trusty
     sudo: required
-    env: CMAKE_LAMMPS=yes DOWNLOAD_PLUMED=yes
+    env: CMAKE_LAMMPS=yes DOWNLOAD_PLUMED=yes PLUMED_MODE=runtime
 # This is with cmake, static linking and LAMMPS uses a preinstalled version of PLUMED
   - os: linux 
     dist: trusty
     sudo: required
-    env: CMAKE_LAMMPS=yes DOWNLOAD_PLUMED=no
+    env: CMAKE_LAMMPS=yes DOWNLOAD_PLUMED=no PLUMED_MODE=static
 
 install:
   - export PATH="$HOME/opt/bin:$PATH"
