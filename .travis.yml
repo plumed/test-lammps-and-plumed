@@ -17,6 +17,11 @@ matrix:
     dist: trusty
     sudo: required
     env: CMAKE_LAMMPS=yes DOWNLOAD_PLUMED=yes
+# This is with cmake, static linking and LAMMPS uses a preinstalled version of PLUMED
+  - os: linux 
+    dist: trusty
+    sudo: required
+    env: CMAKE_LAMMPS=yes DOWNLOAD_PLUMED=no
 
 install:
   - export PATH="$HOME/opt/bin:$PATH"
