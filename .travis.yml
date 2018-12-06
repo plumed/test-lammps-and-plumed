@@ -24,6 +24,7 @@ install:
   - sudo apt-get update -qq
   - sudo apt install mpi-default-bin mpi-default-dev
   - sudo apt-get -y install libatlas-base-dev
+  - sudo apt-get install gsl-bin libgsl0-dev
   - sudo ln -s ccache /usr/local/bin/mpic++
   - export PATH=/usr/lib/ccache:${PATH}
   - ccache -s
