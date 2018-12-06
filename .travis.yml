@@ -21,7 +21,7 @@ matrix:
 install:
   - export PATH="$HOME/opt/bin:$PATH"
   - export LD_LIBRARY_PATH="$HOME/opt/lib:$LD_LIBRARY_PATH"
-  - sudo apt update
+  - sudo apt-get update -qq
   - sudo apt install mpi-default-bin mpi-default-dev
   - sudo apt-get -y install libatlas-base-dev
   - sudo ln -s ccache /usr/local/bin/mpic++
