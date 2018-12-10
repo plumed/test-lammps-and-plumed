@@ -48,7 +48,7 @@ if [ $cmake = yes ]; then
    if [ $download = yes ]; then
        mkdir $HOME/opt/
        mkdir $HOME/opt/bin 
-       cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes -D DOWNLOAD_PLUMED=yes -D PLUMED_MODE=runtime ../cmake
+       CXX="mpic++" cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes -D DOWNLOAD_PLUMED=yes -D PLUMED_MODE=runtime ../cmake
    else
        export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/opt/lib/pkgconfig
        cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes ../cmake 
@@ -62,7 +62,7 @@ else
       mkdir $HOME/opt/bin
       make lib-plumed args="-b"
    else    
-      make lib-plumed args="-p $HOME/opt -m shared"
+      CXX="mpic++" make lib-plumed args="-p $HOME/opt -m shared"
    fi
    make yes-kspace
    make yes-molecule
