@@ -39,7 +39,7 @@ install:
 # patch=no to skip patching
 # repo=https://github.com/gtribello/lammps.git to clone a given repository (rather than official lammps)
 # version=pablo-fix to checkout a specific version
-  - .travis/install.lammps version=master downloadplumed=$DOWNLOAD_PLUMED cmake=$CMAKE_LAMMPS
+  - CXX="mpic++" .travis/install.lammps version=master downloadplumed=$DOWNLOAD_PLUMED cmake=$CMAKE_LAMMPS
   - ccache -s
 
 script:
