@@ -60,7 +60,7 @@ else
    if [ $download = yes ]; then
       mkdir $HOME/opt/
       mkdir $HOME/opt/bin
-      make lib-plumed args="-b"
+      CXX="mpic++" make lib-plumed args="-b"
    else    
       CXX="mpic++" make lib-plumed args="-p $HOME/opt -m shared"
    fi
