@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Check that lammps executible has been created
+if [ ! -f $HOME/opt/bin/lammps ]; then 
+     exit 1
+fi
+
 # Run tests on position, mass, charge and so on
 cd rt-1 
 ./check-plumed.sh > log

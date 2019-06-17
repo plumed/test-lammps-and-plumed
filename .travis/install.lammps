@@ -54,6 +54,9 @@ if [ $cmake = yes ]; then
        cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes ../cmake 
    fi
    make -j 5 
+   if [ ! -f ./lmp ] ; then 
+        exit 1
+   fi
    cp ./lmp $HOME/opt/bin/lammps
 else 
    cd src
@@ -70,6 +73,9 @@ else
    make yes-manybody
    make yes-user-plumed
    make -j 5 ubuntu_simple
+   if [ ! -f ./lmp_ubuntu_simple ] ; then 
+        exit 1
+   fi
    cp ./lmp_ubuntu_simple $HOME/opt/bin/lammps
 fi
 
