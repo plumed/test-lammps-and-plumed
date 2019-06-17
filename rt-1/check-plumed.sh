@@ -6,6 +6,15 @@ LAMMPS=$HOME/opt/bin/lammps
 
 # Run first LAMMPS calculation
 $LAMMPS < in.peptide-plumed
+if [ ! -f plumed.xyz ]; then
+     echo ERROR failed to generate output file for PLUMED
+     exit 1
+fi
+
+nl=`paste plumed.xyz lammps.xyz | wc -l`
+if [ "$nl" -eq 0 ] ; then
+   echo ERROR running LAMMPS and PLUMED 
+fi
 
 # Check PLUMED positions
 nlines=`paste plumed.xyz lammps.xyz | awk '{if( $2<$6-0.0001 || $2>$6+0.0001 || $3<$7-0.0001 || $3>$7+0.0001 || $4<$8-0.0002 || $4>$8+0.0002 ) if( $5!="Timestep:" && $1!=2004 ) print $0}' | wc -l` 

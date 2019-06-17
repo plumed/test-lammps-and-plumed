@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# Check that lammps executible has been created
+# Check that lammps executible is created
 if [ ! -f $HOME/opt/bin/lammps ]; then 
-     exit 1
+     echo ERROR no lammps executible has been created
+     exit 1 
 fi
 
 # Run tests on position, mass, charge and so on
