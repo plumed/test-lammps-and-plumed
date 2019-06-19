@@ -11,3 +11,5 @@ make yes-user-plumed
 To compile with cmake
 
 cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes ../cmake
+
+
