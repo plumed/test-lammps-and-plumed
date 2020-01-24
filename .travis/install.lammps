@@ -48,10 +48,10 @@ if [ $cmake = yes ]; then
    if [ $download = yes ]; then
        mkdir $HOME/opt/
        mkdir $HOME/opt/bin 
-       cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes -D DOWNLOAD_PLUMED=yes -D PLUMED_MODE=runtime ../cmake
+       cmake -D CMAKE_CXX_FLAGS="-O3 -g -fopenmp -DNDEBUG -std=c++11" -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes -D DOWNLOAD_PLUMED=yes -D PLUMED_MODE=runtime ../cmake
    else
        export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:$HOME/opt/lib/pkgconfig
-       cmake -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes ../cmake 
+       cmake -D CMAKE_CXX_FLAGS="-O3 -g -fopenmp -DNDEBUG -std=c++11" -D PKG_MANYBODY=yes -D PKG_KSPACE=yes -D PKG_MOLECULE=yes -D PKG_RIGID=yes -D PKG_USER-PLUMED=yes ../cmake 
    fi
    make -j 5 
    if [ ! -f ./lmp ] ; then 
@@ -72,6 +72,8 @@ else
    make yes-rigid
    make yes-manybody
    make yes-user-plumed
+   sed -e 's/CCFLAGS =/CCFLAGS = -O3 -g -fopenmp -DNDEBUG -std=c++11/' ./MAKE/MACHINES/Makefile.ubuntu_simple > tmp_make
+   mv tmp_make ./MAKE/MACHINES/Makefile.ubuntu_simple
    make -j 5 ubuntu_simple
    if [ ! -f ./lmp_ubuntu_simple ] ; then 
         exit 1
